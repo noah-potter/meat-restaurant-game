@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class OrderUI : MonoBehaviour
 {
-  public GameObject ImagePrefab;
+  public GameObject ResultImagePrefab;
+  public GameObject RequirementImagePrefab;
   public GameObject RequirementsRow;
   public GameObject ResultsRow;
 
@@ -12,11 +13,11 @@ public class OrderUI : MonoBehaviour
   {
     order.Recipe.RecipeRequirements.ForEach(requirement =>
     {
-      var image = Instantiate(ImagePrefab, RequirementsRow.transform).transform.GetComponent<UnityEngine.UI.Image>();
+      var image = Instantiate(RequirementImagePrefab, RequirementsRow.transform).transform.GetComponent<UnityEngine.UI.Image>();
       image.sprite = FoodToSpriteManager.Instance.FoodToSpriteMap[requirement.FoodType];
     });
 
-    var image = Instantiate(ImagePrefab, ResultsRow.transform).transform.GetComponent<UnityEngine.UI.Image>();
+    var image = Instantiate(ResultImagePrefab, ResultsRow.transform).transform.GetComponent<UnityEngine.UI.Image>();
     image.sprite = FoodToSpriteManager.Instance.FoodToSpriteMap[order.Recipe.Result.FoodType];
   }
 }

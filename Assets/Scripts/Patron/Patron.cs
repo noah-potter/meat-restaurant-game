@@ -7,8 +7,18 @@ public class Patron : MonoBehaviour
 {
   private Order _order;
   private float _timeOrdered;
+  private float _timeToWait;
   [SerializeField]
-  private float _timeToWait = 30f;
+  private GameObject orderCanvasPrefab;
+  private GameObject orderCanvas;
+
+  private System.Action<Patron> _onOrderComplete;
+
+  public void Initialize(float timeToWait, System.Action<Patron> onOrderComplete)
+  {
+    _timeToWait = timeToWait;
+    _onOrderComplete = onOrderComplete;
+  }
 
   void Start()
   {
@@ -32,6 +42,12 @@ public class Patron : MonoBehaviour
         _order = OrderManager.Instance.PlaceRandomOrder();
         _timeOrdered = Time.time;
 
+        orderCanvas = Instantiate(orderCanvasPrefab, transform);
+        var orderUI = orderCanvas.GetComponent<OrderUI>();
+        orderUI.Render(_order);
+
+        orderCanvas.transform.position = transform.position + new Vector3(0, 1);
+
         break;
       }
     }
@@ -42,8 +58,8 @@ public class Patron : MonoBehaviour
     if (_order != null && Time.time - _timeOrdered > _timeToWait)
     {
       // Remove the order
-      OrderManager.Instance.RemoveOrder(_order);
       _order = null;
+      _onOrderComplete(this);
     }
   }
 
@@ -56,5 +72,10 @@ public class Patron : MonoBehaviour
       seats[i] = seats[randomIndex];
       seats[randomIndex] = temp;
     }
+  }
+
+  void OnDestroy()
+  {
+    Destroy(orderCanvas);
   }
 }

@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118aa01025ce0544c86b3a9b9f0d64ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numPatronsToSpawn: 0
-  patronSpawnDelay: 0
 --- !u!114 &3896765578983317386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,4 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a92e0e13a296184b951cb1597912106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numPatronsToSpawn: 2
+  timeToWait: 30
   patronPrefab: {fileID: 8623382131271776793, guid: 5769ca9c912fefa46b7006622a23fb32, type: 3}
+  patronSpawnDelay: 3

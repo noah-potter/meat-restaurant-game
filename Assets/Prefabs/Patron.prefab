@@ -119,3 +119,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f917a9631e98e4194f6326e7c29823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeToWait: 10
+  orderCanvasPrefab: {fileID: 3334636191241990528, guid: 6bfb0da139fdf104b839a5844da4ae5b, type: 3}
